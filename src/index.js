@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+
 import App from './App';
+// here i will import boostrap from the node modules which i install using
+// npm install bootstrap@4.0.0 --safe
+// i also install reactstrap using npm install reactstrap react-popper --safe
+// reatstrap is a pakage which supply boostrap component as we cannot directly used js bootstrap component
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
