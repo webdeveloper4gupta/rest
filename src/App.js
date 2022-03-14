@@ -6,10 +6,17 @@ import React, { Component } from 'react'
 // here i import navbar from reactstrap
 import { Navbar, NavbarBrand } from 'reactstrap';
 import MenuComponent from './components/MenuComponent';
+import { DISHES }  from './shared/dishes';
 export class App extends Component {
-  // static propTypes = {
+  // here i set state 
+  constructor(props){
+    super(props);
 
-  // }
+    this.state={
+      // it means what i impost from DISHESthat comes in the dishes
+      dishes:DISHES
+    };
+  }
 
   render() {
     return (
@@ -22,7 +29,9 @@ export class App extends Component {
            <NavbarBrand href="\">Mahajan Restaurant</NavbarBrand>
         </div>
         </Navbar>
-        <MenuComponent />
+        {/* this is way of adding component in the app.js */}
+        {/* here i give state as a prop to menucomponent */}
+        <MenuComponent dishes={this.state.dishes} />
       </div>
     )
   }

@@ -1,73 +1,76 @@
 import React, { Component } from 'react';
-// here i import media compeonet from package called reactstrap
-import { Media } from 'reactstrap';
+// here i import Media compeonet from package called reactstrap
+// import { Media } from 'reactstrap';
+// now i will used Media instead of Media
+import { Card,CardImg,CardImgOverlay ,CardText,CardBody,CardTitle} from 'reactstrap';
 export class MenuComponent extends Component {
     constructor(props){
         super(props);
         // here i make state
         this.state = {// here i create one object that will render in the index.html 
-            dishes: [// array of javascript object
-                {
-                  id: 0,
-                  name:'Uthappizza',
-                  image: 'assets/images/uthappizza.png',
-                  category: 'mains',
-                  label:'Hot',
-                  price:'4.99',
-                  description:'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.'                        },
-               {
-                  id: 1,
-                  name:'Zucchipakoda',
-                  image: 'assets/images/zucchipakoda.png',
-                  category: 'appetizer',
-                  label:'',
-                  price:'1.99',
-                  description:'Deep fried Zucchini coated with mildly spiced Chickpea flour batter accompanied with a sweet-tangy tamarind sauce'                        },
-               {
-                  id: 2,
-                  name:'Vadonut',
-                  image: 'assets/images/vadonut.png',
-                  category: 'appetizer',
-                  label:'New',
-                  price:'1.99',
-                  description:'A quintessential ConFusion experience, is it a vada or is it a donut?'                        },
-               {
-                  id: 3,
-                  name:'ElaiCheese Cake',
-                  image: 'assets/images/elaicheesecake.png',
-                  category: 'dessert',
-                  label:'',
-                  price:'2.99',
-                  description:'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms'                        }
-               ],
+           selectedDish:null
             };
     }
+    onDishSelect(dish){
+             this.setState({selectedDish:dish})
+    }
+    renderDish(dish) {
+      if (dish != null)
+          return(
+              <Card>
+                  <CardImg top src={dish.image} alt={dish.name} />
+                  <CardBody>
+                    <CardTitle>{dish.name}</CardTitle>
+                    <CardText>{dish.description}</CardText>
+                  </CardBody>
+              </Card>
+          );
+      else
+          return(
+              <div></div>
+          );
+  }
   render() {
     //   here i create one javscript variable
-    const menu = this.state.dishes.map((dish) => {
+    // here dishes comes as props thats why we used tthis .props.dishes
+    const menu = this.props.dishes.map((dish) => {
         return (
-          <div key={dish.id} className="col-12 mt-5">
-            <Media tag="li">
-              <Media left middle>
-                  <Media object src={dish.image} alt={dish.name} />
-              </Media>
-              <Media body className="ml-5">
-                <Media heading>{dish.name}</Media>
-                <p>{dish.description}</p>
-              </Media>
-            </Media>
-          </div>
+          // <div key={dish.id} className="col-12 mt-5">
+          //   <Media tag="li">
+          //     <Media left middle>
+          //         <Media object src={dish.image} alt={dish.name} />
+          //     </Media>
+          //     <Media body className="ml-5">
+          //       <Media heading>{dish.name}</Media>
+          //       <p>{dish.description}</p>
+          //     </Media>
+          //   </Media>
+          // </div>
+          <div  className="col-12 col-md-5 m-1">
+          <Card key={dish.id}
+            onClick={() => this.onDishSelect(dish)}>
+            <CardImg width="100%" src={dish.image} alt={dish.name} />
+            <CardImgOverlay>
+                <CardTitle>{dish.name}</CardTitle>
+            </CardImgOverlay>
+          </Card>
+        </div>
         );
     });
     return (
       <div className='container'>
           <div className="row">
-              {/* here i used vmedia componet that do listing of menu which i import above */}
-            <Media list>
+              {/* here i used Media componet that do listing of menu which i import above */}
+              {/* Media comes from bootstrap */}
+           
                 {menu}
-            </Media>
+            
           </div>
-        
+          <div className="row">
+                  <div  className="col-12 col-md-10 m-1">
+                    {this.renderDish(this.state.selectedDish)}
+                  </div>
+                </div>
       </div>
     );
   }
