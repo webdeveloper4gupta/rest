@@ -7,7 +7,7 @@ import React, { Component } from 'react'
 import { Navbar, NavbarBrand } from 'reactstrap';
 import Menu from './MenuComponent';
 import { DISHES }  from '../shared/dishes';
-import DishDetails from './DishdetailComponent';
+import DishDetail from './DishdetailComponent';
 export class Main extends Component {
   // here i set state 
   constructor(props){
@@ -37,7 +37,7 @@ export class Main extends Component {
         {/* this is way of adding component in the app.js */}
         {/* here i give state as a prop to menucomponent */}
         <Menu dishes={this.state.dishes} onClick={(dishId)=>this.onDishSelect((dishId))}/>
-        <DishDetails dish={this.state.dishes.filter((dish)=> dish.id===this.state.selectedDish)[0]} ></DishDetails>
+        <DishDetail dish={this.state.dishes.filter((dish)=> dish.id===this.state.selectedDish)[0]} ></DishDetail>
       </div>
     )
   }
