@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 // import PropTypes from 'prop-types'
 // here i import navbar from reactstrap
 import { Navbar, NavbarBrand } from 'reactstrap';
-import MenuComponent from './components/MenuComponent';
+import Menu from './components/MenuComponent';
 import { DISHES }  from './shared/dishes';
 export class App extends Component {
   // here i set state 
@@ -31,7 +31,8 @@ export class App extends Component {
         </Navbar>
         {/* this is way of adding component in the app.js */}
         {/* here i give state as a prop to menucomponent */}
-        <MenuComponent dishes={this.state.dishes} />
+        <Menu dishes={this.state.dishes} />
+
       </div>
     )
   }
