@@ -7,6 +7,8 @@ import App from './App';
 // i also install reactstrap using npm install reactstrap react-popper --safe
 // reatstrap is a pakage which supply boostrap component as we cannot directly used js bootstrap component
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
+import 'bootstrap-social/bootstrap-social.css';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 

@@ -6,6 +6,7 @@ import React, { Component } from 'react'
 // here i import navbar from reactstrap
 // import { Navbar, NavbarBrand } from 'reactstrap';
 import Main from './components/MainComponent';
+import './App.css';
 // import Menu from './components/MenuComponent';
 // import { DISHES }  from './shared/dishes';
 export class App extends Component {

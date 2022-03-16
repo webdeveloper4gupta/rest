@@ -9,3 +9,10 @@
           //     </Media>
           //   </Media>
           // </div>
+           {/* here i write a Navbar component which import from reactstrap */}
+        {/* <Navbar dark color="primary">
+        <div className='container'> 
+        {/* navbrand also import from reactstrap */}
+           <NavbarBrand href="\">Mahajan Restaurant</NavbarBrand>
+        </div>
+        </Navbar> */}
