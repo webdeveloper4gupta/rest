@@ -67,5 +67,6 @@ address{
 }
 
 .navbar-dark {
+  display:flex;
   background-color: #512DA8;
 }
