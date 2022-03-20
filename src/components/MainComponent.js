@@ -13,6 +13,7 @@ import { PROMOTIONS }  from '../shared/promotion';
 import { LEADERS }  from '../shared/leaders';
 import { COMMENTS }  from '../shared/comment';
 import DishDetail from './DishdetailComponent';
+import About from './AboutComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch,Route,Redirect } from 'react-router-dom';
@@ -69,7 +70,7 @@ export class Main extends Component {
           <Route exact path="/menu" component={()=><Menu dishes={this.state.dishes}/>}></Route>
           <Route path='/menu/:dishId' component={DishWithId} />
           <Route exact path="/contactus" component={Contact}></Route>
-      
+          <Route path="/aboutus" component={()=><About leaders={this.state.leaders}/>}></Route>
           <Redirect to="/home" />
         </Switch>
         <Footer />
