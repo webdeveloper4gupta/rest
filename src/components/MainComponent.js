@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 // import './App.css';
 
-import React, { Component } from 'react';
+import React, { Component } from 'react';//if thr is class baseed componet then i used component here 
 import Home from './HomeComponent';
 // import PropTypes from 'prop-types'
 // here i import navbar from reactstrap
@@ -16,7 +16,7 @@ import DishDetail from './DishdetailComponent';
 import About from './AboutComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
-import { Switch,Route,Redirect } from 'react-router-dom';
+import { Switch,Route,Redirect } from 'react-router-dom';//it shows i implkent react router dom
 export class Main extends Component {
   // here i set state 
   constructor(props){
