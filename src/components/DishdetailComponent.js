@@ -1,6 +1,6 @@
 import React from "react";
-import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
-
+import { Card, CardImg, CardText, CardBody, CardTitle,Breadcrumb, BreadcrumbItem  } from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 // constructor(props) {
 //     super(props);
@@ -37,7 +37,7 @@ function RenderCmt({ Comments }) {
         return (<div></div>);
     }
     // map is used to iterate te comment array 
-    const cmnts = Comments.comments.map((comment) => {
+    const cmnts = Comments.map((comment) => {
         return (
             <li key={comment.id}>
                 <p>{comment.comment}</p>
@@ -81,10 +81,21 @@ const DishDetail = (props) => {// we can also write function DishDetail(props)
     else if (dish !== null) {
         return (
             <div className="container ">
+                <div className="row">
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                        <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>Menu</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>Menu</h3>
+                        <hr />
+                    </div>                
+                </div>
                 <div className="row ">
                 
                         <RenderDish dish={dish} />
-                        <RenderCmt Comments={dish}/> 
+                        <RenderCmt Comments={props.comments}/> 
                 </div>
 
 
