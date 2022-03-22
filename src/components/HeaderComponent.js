@@ -77,7 +77,7 @@ class Header extends Component {
             isNavOpen: !this.state.isNavOpen
           });
         }
-        // to haandle form login
+        // to haandle form login which recive event s parameter
         handleLogin(event) {
           this.toggleModal();
           alert("Username: " + this.username.value + " Password: " + this.password.value

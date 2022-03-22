@@ -10,6 +10,17 @@ import Main from './components/MainComponent';
 import { BrowserRouter } from 'react-router-dom';
 // import Menu from './components/MenuComponent';
 // import { DISHES }  from './shared/dishes';
+
+// here i import the redux component
+
+import { Provider } from 'react-redux';
+import { ConfigureStore } from './redux/configureStore';
+
+
+
+
+const store = ConfigureStore();
+
 export class App extends Component {
   // here i set state 
   // constructor(props){
@@ -21,12 +32,16 @@ export class App extends Component {
   //   };
   // }
 
+  // in the redux explanation
+
+
   render() {
     return (
       // inside this we write jsx
       // <div className="App">
+      <Provider store={ store }>
       <BrowserRouter>
-       <div>
+       <div className='Apps'>
         {/*
         {/* here i write a Navbar component which import from reactstrap */}
          {/* <Navbar dark color="primary">
@@ -41,6 +56,8 @@ export class App extends Component {
           <Main ></Main>
       </div>
       </BrowserRouter>
+      
+      </Provider>
       // <div>
       //   {/*
       //   {/* here i write a Navbar component which import from reactstrap */}
