@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem } from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem,Modal,ModalHeader,ModalBody,Button,Form,FormGroup, Input, Label } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 // import "../App.css";
 class Header extends Component {
@@ -65,8 +65,11 @@ class Header extends Component {
       
           this.toggleNav = this.toggleNav.bind(this);
           this.state = {
-            isNavOpen: false
+            isNavOpen: false,
+            isModalOpen: false
           };
+          this.toggleModal = this.toggleModal.bind(this);
+          this.handleLogin = this.handleLogin.bind(this);
         }
   
         toggleNav() {
@@ -74,7 +77,20 @@ class Header extends Component {
             isNavOpen: !this.state.isNavOpen
           });
         }
+        // to haandle form login
+        handleLogin(event) {
+          this.toggleModal();
+          alert("Username: " + this.username.value + " Password: " + this.password.value
+              + " Remember: " + this.remember.checked);
+          event.preventDefault();
   
+      }
+  // here i put the method
+  toggleModal() {
+    this.setState({
+      isModalOpen: !this.state.isModalOpen
+    });
+  }
       render() {
           return(
               <div>
@@ -89,7 +105,7 @@ class Header extends Component {
                           </div>
                           <div className="col-md-7 ml-0">
                           <Collapse isOpen={this.state.isNavOpen} navbar>
-                              <Nav navbar>
+                              <Nav  navbar>
                               <NavItem>
                                   <NavLink className="nav-link"  to='/home'><span className="fa fa-home fa-lg"></span> Home</NavLink>
                               </NavItem>
@@ -103,6 +119,13 @@ class Header extends Component {
                                   <NavLink className="nav-link" to='/contactus'><span className="fa fa-address-card fa-lg"></span> Contact Us</NavLink>
                               </NavItem>
                               </Nav>
+
+                              {/* tthisis for modal */}
+                              <Nav className='ml-auto' navbar>
+                                <NavItem>
+                                    <Button outline onClick={this.toggleModal}><span className="fa fa-sign-in fa-lg"></span> Login</Button>
+                                </NavItem>
+                            </Nav>
                           </Collapse>
                           </div>
                       </div>
@@ -124,7 +147,34 @@ class Header extends Component {
           </div>
         </div>
 
-
+     {/* here introduce the modal */}
+     <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+    
+                    <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+                    
+                    <ModalBody>
+                    <Form onSubmit={this.handleLogin}>
+                            <FormGroup>
+                                <Label htmlFor="username">Username</Label>
+                                <Input type="text" id="username" name="username"
+                                    innerRef={(input) => this.username = input} />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label htmlFor="password">Password</Label>
+                                <Input type="password" id="password" name="password"
+                                    innerRef={(input) => this.password = input}  />
+                            </FormGroup>
+                            <FormGroup check>
+                                <Label check>
+                                    <Input type="checkbox" name="remember"
+                                    innerRef={(input) => this.remember = input}  />
+                                    Remember me
+                                </Label>
+                            </FormGroup>
+                            <Button type="submit" value="submit" color="primary">Login</Button>
+                        </Form>
+                    </ModalBody>
+                </Modal>
 
         {/* </Jumbotron> */}
       </div>
