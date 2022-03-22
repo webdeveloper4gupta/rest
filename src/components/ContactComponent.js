@@ -46,11 +46,22 @@ export class Contact extends Component {
     //     });
     // }
 
-    handleSubmit(event) {
-        console.log('Current State is: ' + JSON.stringify(this.state));
-        alert('Current State is: ' + JSON.stringify(this.state));
-        event.preventDefault();
+    // handleSubmit(event) {
+// in the react-redux form handle submit recieves value
+
+    //     handleSubmit(value) {
+    //     console.log('Current State is: ' + JSON.stringify(this.state));
+    //     alert('Current State is: ' + JSON.stringify(this.state));
+    //     event.preventDefault();
+    // }
+
+    
+    handleSubmit(values) {
+        console.log('Current State is: ' + JSON.stringify(values));
+        alert('Current State is: ' + JSON.stringify(values));
+        // event.preventDefault();
     }
+
 
     // we also no need the handblur function 
 
