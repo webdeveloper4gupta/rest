@@ -25,8 +25,10 @@ import Footer from './FooterComponent';
 import { Switch,Route,Redirect, withRouter  } from 'react-router-dom';
 //it shows i implkent react router dom
 import { connect } from 'react-redux';
+import { addComment } from '../redux/ActionCreators';
 
-const mapStateToProps = state => {
+// this i will used in redux exercise
+const mapStateToProps = state => {//it map all states in the store as the prop of class
   return {
     dishes: state.dishes,
     comments: state.comments,
@@ -34,6 +36,13 @@ const mapStateToProps = state => {
     leaders: state.leaders
   }
 }
+
+
+const mapDispatchToProps = dispatch => ({
+  
+  addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment))
+
+});
 
 
 export class Main extends Component {
@@ -62,9 +71,9 @@ export class Main extends Component {
   render() {
     const HomePage = () => {
       return(
-          // <Home dish={this.props.dishes.filter((dish) => dish.featured)[0]}//[0]means only first element of array
-          // promotion={this.props.promotions.filter((promo) => promo.featured)[0]}
-          // leader={this.props.leaders.filter((leader) => leader.featured)[0]}
+          // <Home dish={this.state.dishes.filter((dish) => dish.featured)[0]}//[0]means only first element of array
+          // promotion={this.state.promotions.filter((promo) => promo.featured)[0]}
+          // leader={this.state.leaders.filter((leader) => leader.featured)[0]}
           // />
           // now after react redux
 
@@ -77,13 +86,13 @@ export class Main extends Component {
     }
     const DishWithId = ({match}) => {
       return(
-          // <DishDetail dish={this.props.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
-            // comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} />
+          // <DishDetail dish={this.state.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
+            // comments={this.state.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} />
 
 // after tthe react redux
 
             <DishDetail dish={this.props.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
-            comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} />
+            comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} addComment={this.props.addComment}/>
       );
     };
     return (
@@ -104,7 +113,7 @@ export class Main extends Component {
           {/* if in the route we want to send props the ex shown below */}
 
 
-          {/* <Route exact path="/menu" component={()=><Menu dishes={this.props.dishes}/>}></Route> */}
+          {/* <Route exact path="/menu" component={()=><Menu dishes={this.state.dishes}/>}></Route> */}
               
               {/* after the react redux */}
 
@@ -115,7 +124,7 @@ export class Main extends Component {
           <Route exact path="/contactus" component={Contact}></Route>
 
 
-          {/* <Route path="/aboutus" component={()=><About leaders={this.props.leaders}/>}></Route> */}
+          {/* <Route path="/aboutus" component={()=><About leaders={this.state.leaders}/>}></Route> */}
 
           {/* after the react redux */}
 
@@ -133,6 +142,8 @@ export class Main extends Component {
 // export default Main
 
 // now after the redux
+// here i connect to the store
+// export default withRouter(connect(mapStateToProps)(Main));
 
-export default withRouter(connect(mapStateToProps)(Main));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
 
