@@ -39,6 +39,7 @@ export class App extends Component {
     return (
       // inside this we write jsx
       // <div className="App">
+      // redux used below
       <Provider store={ store }>
       <BrowserRouter>
        <div className='Apps'>
