@@ -2,6 +2,14 @@ import React,{ Component } from "react";
 // import { Card, CardImg, CardText, CardBody, CardTitle,Breadcrumb, BreadcrumbItem ,Button } from 'reactstrap';
 import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, Button, Modal, ModalBody, ModalHeader, Label, Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
+
+// import { baseUrl } from '../shared/baseUrl';
+// this i will add in the thunk exercise
+
+import { Loading } from './LoadingComponent';
+
+
+
 // import { Loading } from './LoadingComponent';
 
 import { Control, LocalForm, Errors } from 'react-redux-form';
@@ -106,6 +114,8 @@ function RenderDish({ dish }) {
             <div className="col-12 col-md-5 m-1 mt-5">
                 <Card>
                     <CardImg width='100%' src={dish.image} alt={dish.name} />
+                    {/* i make the changes in the fetch api */}
+                    {/* <CardImg top src={baseUrl + dish.image} alt={dish.name} /> */}
                     <CardBody>
                         <CardTitle><h3>{dish.name}</h3></CardTitle>
                         <CardText><b>{dish.description}</b></CardText>
@@ -197,6 +207,29 @@ const DishDetail = (props) => {// we can also write function DishDetail(props)
     // const dishItem= this.renderDish(dish);
     // const dishCmt= this.renderCmt(dish.comments);
 // if diah is not empty it means there is some id
+
+// here i add the loading spinner and if the error it shouuld return error
+
+
+else if (props.isLoading) {
+    return(
+        <div className="container">
+            <div className="row">            
+                <Loading />
+            </div>
+        </div>
+    );
+}
+else if (props.errMess) {
+    return(
+        <div className="container">
+            <div className="row">            
+                <h4>{props.errMess}</h4>
+            </div>
+        </div>
+    );
+}
+
     else if (dish !== null) {
         return (
             <div className="container ">

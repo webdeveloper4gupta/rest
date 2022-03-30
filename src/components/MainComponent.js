@@ -25,8 +25,9 @@ import Footer from './FooterComponent';
 import { Switch,Route,Redirect, withRouter  } from 'react-router-dom';
 //it shows i implkent react router dom
 import { connect } from 'react-redux';
-import { addComment } from '../redux/ActionCreators';
-
+// import { addComment } from '../redux/ActionCreators';
+// import { addComment, fetchDishes } from '../redux/ActionCreators';
+import { addComment, fetchDishes, fetchComments, fetchPromos } from '../redux/ActionCreators';
 // this i will used in redux exercise
 const mapStateToProps = state => {//it map all states in the store as the prop of class
   return {
@@ -40,9 +41,23 @@ const mapStateToProps = state => {//it map all states in the store as the prop o
 
 const mapDispatchToProps = dispatch => ({
   
-  addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment))
-
+  addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
+  // this i will addd in the redux-thunk exercise
+  // fetchDishes()is a thunk
+  fetchDishes: () => { dispatch(fetchDishes())}
 });
+
+
+// i make changes in the fetch api
+
+// const mapDispatchToProps = dispatch => ({
+//   addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
+//   fetchDishes: () => { dispatch(fetchDishes())},
+//   // resetFeedbackForm: () => { dispatch(actions.reset('feedback'))},
+//   fetchComments: () => dispatch(fetchComments()),
+//   fetchPromos: () => dispatch(fetchPromos())
+// });
+
 
 
 export class Main extends Component {
@@ -63,7 +78,17 @@ export class Main extends Component {
 
 
   }
-  
+  // i introduce this thunk execise
+  componentDidMount() {
+    this.props.fetchDishes();
+  }
+  // i change the making in the fetch api
+  // componentDidMount() {
+  //   this.props.fetchDishes();
+  //   this.props.fetchComments();
+  //   this.props.fetchPromos();
+  // }
+
 //   onDishSelect(dishId){
 //     this.setState({selectedDish: dishId});
 // }
@@ -78,10 +103,31 @@ export class Main extends Component {
           // now after react redux
 
 
-          <Home dish={this.props.dishes.filter((dish) => dish.featured)[0]}//[0]means only first element of array
-          promotion={this.props.promotions.filter((promo) => promo.featured)[0]}
-          leader={this.props.leaders.filter((leader) => leader.featured)[0]}
+          // <Home dish={this.props.dishes.filter((dish) => dish.featured)[0]}//[0]means only first element of array
+          // promotion={this.props.promotions.filter((promo) => promo.featured)[0]}
+          // leader={this.props.leaders.filter((leader) => leader.featured)[0]}
+          // />
+
+
+          // after the thunk
+          <Home 
+              dish={this.props.dishes.dishes.filter((dish) => dish.featured)[0]}
+              dishesLoading={this.props.dishes.isLoading}
+              dishesErrMess={this.props.dishes.errMess}
+              promotion={this.props.promotions.filter((promo) => promo.featured)[0]}
+              leader={this.props.leaders.filter((leader) => leader.featured)[0]}
           />
+
+          // after the fetch api
+          // <Home 
+          //     dish={this.props.dishes.dishes.filter((dish) => dish.featured)[0]}
+          //     dishesLoading={this.props.dishes.isLoading}
+          //     dishErrMess={this.props.dishes.errMess}
+          //     promotion={this.props.promotions.promotions.filter((promo) => promo.featured)[0]}
+          //     promoLoading={this.props.promotions.isLoading}
+          //     promoErrMess={this.props.promotions.errMess}
+          //     leader={this.props.leaders.filter((leader) => leader.featured)[0]}
+          // />
       );
     }
     const DishWithId = ({match}) => {
@@ -91,8 +137,27 @@ export class Main extends Component {
 
 // after tthe react redux
 
-            <DishDetail dish={this.props.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
-            comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} addComment={this.props.addComment}/>
+            // <DishDetail dish={this.props.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
+            // comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} addComment={this.props.addComment}/>
+
+            // after the thunk exercise
+
+            <DishDetail dish={this.props.dishes.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]}
+            isLoading={this.props.dishes.isLoading}
+            errMess={this.props.dishes.errMess}
+            comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))}
+            addComment={this.props.addComment}
+          />
+
+          // after the fetch api
+          
+          // <DishDetail dish={this.props.dishes.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]}
+          //   isLoading={this.props.dishes.isLoading}
+          //   errMess={this.props.dishes.errMess}
+          //   comments={this.props.comments.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))}
+          //   commentsErrMess={this.props.comments.errMess}
+          //   addComment={this.props.addComment}
+          // />
       );
     };
     return (

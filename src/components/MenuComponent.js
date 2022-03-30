@@ -78,9 +78,11 @@
 import React from "react";
 import { Card, CardImg, CardImgOverlay,   CardTitle,Breadcrumb, BreadcrumbItem } from 'reactstrap'
 import { Link } from 'react-router-dom';
-// import DishDetails from './DishdetailComponent';
+import DishDetails from './DishdetailComponent';
 
-
+// this i import in the react-thunk exercise
+import { Loading } from './LoadingComponent';
+// import { baseUrl } from '../shared/baseUrl';
 
     // constructor(props) {
     //     super(props);
@@ -99,6 +101,7 @@ import { Link } from 'react-router-dom';
                 <Card > 
                   <Link to={`/menu/${dish.id}`} >
                       <CardImg width='100%' src={dish.image} alt={dish.name} />
+                      {/* <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} /> */}
                     <CardImgOverlay>
                         <CardTitle><h5>{dish.name}</h5></CardTitle>
                   </CardImgOverlay>
@@ -107,7 +110,11 @@ import { Link } from 'react-router-dom';
             );
         }
       const Menu=(props)=>{
-        const menu=props.dishes.map((dish)=>{
+        // const menu=props.dishes.map((dish)=>{
+
+// this modification in the thunk exercise
+const menu = props.dishes.dishes.map((dish) => {
+
             return (
                 <div key={dish.id} className="col-12 col-md-5 m-1 mt-5">
                 {/* <Card onClick={()=>this.onDishSelect((dish))}> */}
@@ -122,7 +129,27 @@ import { Link } from 'react-router-dom';
               </div>
             );
         });
-
+        if (props.dishes.isLoading) {
+          return(
+              <div className="container">
+                  <div className="row">            
+                      <Loading />
+                  </div>
+              </div>
+          );
+      }
+      else if (props.dishes.errMess) {
+          return(
+              <div className="container">
+                  <div className="row"> 
+                      <div className="col-12">
+                          <h4>{props.dishes.errMess}</h4>
+                      </div>
+                  </div>
+              </div>
+          );
+      }
+      else{
         return (
             <div className = 'container'>
               <div className="row">
@@ -141,6 +168,7 @@ import { Link } from 'react-router-dom';
                     {/* <DishDetails dish={this.state.selectedDish}/> */}
             </div>
         );
+      }
       }
         // const menu=this.props.dishes.map((dish)=>{
         //     return (
