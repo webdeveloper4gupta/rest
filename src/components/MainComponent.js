@@ -28,6 +28,7 @@ import { connect } from 'react-redux';
 // import { addComment } from '../redux/ActionCreators';
 // import { addComment, fetchDishes } from '../redux/ActionCreators';
 import { addComment, fetchDishes, fetchComments, fetchPromos } from '../redux/ActionCreators';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 // this i will used in redux exercise
 const mapStateToProps = state => {//it map all states in the store as the prop of class
   return {
@@ -163,7 +164,7 @@ export class Main extends Component {
     return (
       // inside this we write jsx
     
-      <div className="App">
+      <div >
        
         {/* this is way of adding component in the app.js */}
         {/* here i give state as a prop to menucomponent */}
@@ -172,7 +173,15 @@ export class Main extends Component {
         {/* <Menu dishes={this.props.dishes} onClick={(dishId)=>this.onDishSelect((dishId))}/> */}
         {/* <DishDetail dish={this.props.dishes.filter((dish)=> dish.id===this.props.selectedDish)[0]} ></DishDetail> */}
         {/*  switches for wraping more then one rout */}
-        <Switch>  
+
+
+{/* here i will add transition */}
+
+<TransitionGroup>
+            <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
+
+
+        <Switch location={this.props.location}>  
           {/* if in the route we will not want to give any props then in the component we give only name ex shown below */}
           <Route path="/home" component={HomePage}></Route>
           {/* if in the route we want to send props the ex shown below */}
@@ -198,6 +207,8 @@ export class Main extends Component {
 
           <Redirect to="/home" />
         </Switch>
+        </CSSTransition>
+          </TransitionGroup>
         <Footer />
       </div>
     )
