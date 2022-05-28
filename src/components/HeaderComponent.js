@@ -63,7 +63,7 @@ class Header extends Component {
         constructor(props) {
           super(props);
       
-          this.toggleNav = this.toggleNav.bind(this);
+          this.toggleNav = this.toggleNav.bind(this);//this is used for opening navabr in the mobile phone condition
           this.state = {
             isNavOpen: false,
             isModalOpen: false

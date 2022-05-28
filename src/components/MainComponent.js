@@ -26,8 +26,8 @@ import { Switch,Route,Redirect, withRouter  } from 'react-router-dom';
 //it shows i implkent react router dom
 import { connect } from 'react-redux';
 // import { addComment } from '../redux/ActionCreators';
-// import { addComment, fetchDishes } from '../redux/ActionCreators';
-import { addComment, fetchDishes, fetchComments, fetchPromos } from '../redux/ActionCreators';
+import { addComment, fetchDishes } from '../redux/ActionCreators';
+// import { addComment, fetchDishes, fetchComments, fetchPromos } from '../redux/ActionCreators';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 // this i will used in redux exercise
 const mapStateToProps = state => {//it map all states in the store as the prop of class

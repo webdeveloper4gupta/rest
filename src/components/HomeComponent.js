@@ -4,6 +4,7 @@ import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle} from 'reactstrap';
   // this i will import inthunk exercise
   import { Loading } from './LoadingComponent';
+  // import { FadeTransform } from 'react-animation-components';
   // import { baseUrl } from '../shared/baseUrl';
 // this i write in the single page exercise
 
@@ -51,6 +52,23 @@ function RenderCard({item, isLoading, errMess}) {
               <CardText>{item.description}</CardText>
               </CardBody>
           </Card>
+
+
+          // changes make in the aniamtions
+          // <FadeTransform
+          //       in
+          //       transformProps={{
+          //           exitTransform: 'scale(0.5) translateY(-50%)'
+          //       }}>
+          //       <Card>
+          //           <CardImg src={baseUrl + item.image} alt={item.name} />
+          //           <CardBody>
+          //           <CardTitle>{item.name}</CardTitle>
+          //           {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle> : null }
+          //           <CardText>{item.description}</CardText>
+          //           </CardBody>
+          //       </Card>
+          //   </FadeTransform>
       );
 
 }

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 // this i will add in the thunk exercise
 
 import { Loading } from './LoadingComponent';
-
+// import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 
 // import { Loading } from './LoadingComponent';
@@ -156,6 +156,20 @@ function RenderCmt({ Comments, postComment, dishId,addComment }) {
          </>
         );
     });
+
+    // here i make changes in the niamtions
+    // <Stagger in>
+    // {Comments.map((comment) => {
+    //     return (
+    //         <Fade in>
+    //         <li key={comment.id}>
+    //         <p>{comment.comment}</p>
+    //         <p>-- {comment.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
+    //         </li>
+    //         </Fade>
+    //     );
+    // })}
+    // </Stagger>
 
     return (
         <div className='col-md-5 m-1'>
